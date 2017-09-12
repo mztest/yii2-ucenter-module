@@ -30,6 +30,8 @@ class Module extends \yii\base\Module
      * [[Controller::defaultAction]].
      */
     public $defaultRoute = 'api';
+
+    public $configFile = '@common/config/ucenter.php';
     /**
      * @inheritdoc
      */
@@ -38,6 +40,8 @@ class Module extends \yii\base\Module
         parent::init();
 
         // custom initialization code goes here
+        $this->configFile = \Yii::getAlias($this->configFile);
+        require_once($this->configFile);
 
     }
 }

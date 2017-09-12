@@ -10,5 +10,10 @@ namespace mztest\ucenter\controllers;
 
 class ApiController extends \yii\web\Controller
 {
+    public function actionTest()
+    {
+        return 1;
+    }
     public function actionIndex() {}
+
 }
