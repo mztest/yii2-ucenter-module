@@ -1,7 +1,6 @@
 {
     "name": "mztest/yii2-ucenter-module",
     "description": "Yii2 module for integration ucenter.",
-    "type": "project",
     "license": "MIT",
     "homepage": "https://github.com/mztest/yii2-ucenter-module",
     "authors": [
