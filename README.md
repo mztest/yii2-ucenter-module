@@ -1,2 +1,2 @@
 # yii2-ucenter-module
-Yii2 module for intergration ucenter
+Yii2 module for integration ucenter
