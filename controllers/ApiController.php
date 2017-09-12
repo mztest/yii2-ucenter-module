@@ -8,12 +8,26 @@
 
 namespace mztest\ucenter\controllers;
 
-class ApiController extends \yii\web\Controller
+use Yii;
+use yii\web\Controller;
+use mztest\ucenter\UCenter;
+
+class ApiController extends Controller
 {
-    public function actionTest()
+    /* @var $uCenter UCenter */
+    protected $uCenter;
+
+    public function init()
     {
-        return 1;
+        parent::init();
+
+        $this->uCenter = new UCenter(Yii::$app->request->get('code'));
+        $this->uCenter->validate();
     }
-    public function actionIndex() {}
+
+    public function actionIndex()
+    {
+        return $this->uCenter->process();
+    }
 
 }
