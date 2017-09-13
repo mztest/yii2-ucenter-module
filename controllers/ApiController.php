@@ -10,7 +10,7 @@ namespace mztest\ucenter\controllers;
 
 use Yii;
 use yii\web\Controller;
-use mztest\ucenter\UCenter;
+use mztest\ucenter\models\UCenter;
 
 class ApiController extends Controller
 {
@@ -21,7 +21,9 @@ class ApiController extends Controller
     {
         parent::init();
 
-        $this->uCenter = new UCenter(Yii::$app->request->get('code'));
+        $this->uCenter = new UCenter([
+            'code' => Yii::$app->request->get('code')
+        ]);
         $this->uCenter->validate();
     }
 

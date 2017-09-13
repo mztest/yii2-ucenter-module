@@ -6,12 +6,14 @@
  * Time: 17:26
  */
 
-namespace mztest\ucenter;
+namespace mztest\ucenter\models;
 
 use yii\base\InvalidConfigException;
 use yii\base\Object;
 use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
+
+require_once __DIR__ .'../uc_client/client.php';
 
 class UCenter extends Object
 {
@@ -29,10 +31,9 @@ class UCenter extends Object
         if ($this->code === null) {
             throw new InvalidConfigException('"Code" property must be specified.');
         }
-        require_once __DIR__ .'../uc_client/client.php';
 
-        parse_str(authcode($this->code, 'DECODE', UC_KEY), $this->get);
-        $this->post = xml_unserialize(file_get_contents('php://input'));
+        parse_str(uc_authcode($this->code, 'DECODE', UC_KEY), $this->get);
+        $this->post = uc_unserialize(file_get_contents('php://input'));
     }
 
     public function validate()
@@ -55,7 +56,7 @@ class UCenter extends Object
 
         $method = 'process'. ucfirst($action);
 
-        return $this->{$method};
+        return $this->{$method}();
     }
 
     public function processTest()
