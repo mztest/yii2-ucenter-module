@@ -13,7 +13,7 @@ use yii\base\Object;
 use yii\helpers\ArrayHelper;
 use yii\web\BadRequestHttpException;
 
-require_once __DIR__ .'../uc_client/client.php';
+require_once __DIR__ .'/../uc_client/client.php';
 
 class UCenter extends Object
 {
