@@ -14,6 +14,8 @@ use mztest\ucenter\models\UCenter;
 
 class ApiController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     /* @var $uCenter UCenter */
     protected $uCenter;
 
@@ -29,7 +31,7 @@ class ApiController extends Controller
 
     public function actionIndex()
     {
-        return $this->uCenter->process();
+        return $this->uCenter->run();
     }
 
 }
