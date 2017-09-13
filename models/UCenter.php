@@ -50,22 +50,57 @@ class UCenter extends Object
         }
     }
 
-    public function process()
+    public function run()
     {
         $action = $this->getAction();
 
-        $method = 'process'. ucfirst($action);
-
-        return $this->{$method}();
+        return $this->{$action}();
     }
 
-    public function processTest()
+    public function test()
     {
         return self::API_RETURN_SUCCEED;
     }
 
+    public function updateApps()
+    {
+        $cacheFile = __DIR__.'/../uc_client/data/cache/apps.php';
+        $fp = fopen($cacheFile, 'w');
+        $s = "<?php\r\n";
+        $s .= '$_CACHE[\'apps\'] = '.var_export($this->post, true).";\r\n";
+        fwrite($fp, $s);
+        fclose($fp);
+
+        return self::API_RETURN_SUCCEED;
+    }
+
+    /**
+     * @return mixed|null
+     */
     public function getAction()
     {
-        return ArrayHelper::getValue($this->get, 'action');
+        $actionList = [
+            'test' => 'test',
+            'deleteuser' => 'deleteUser',
+            'renameuser' => 'renameUser',
+            'updatepw' => 'updatePassword',
+            'gettag' => 'getTag',
+            'synlogin' => 'synLogin',
+            'synlogout' => 'synLogout',
+            'updatebadwords' => 'updateBadWords',
+            'updatehosts' => 'updateHosts',
+            'updateapps' => 'updateApps',
+            'updateclient' => 'updateClient',
+            'updatecredit' => 'updateCredit',
+            'getcreditsettings' => 'getCreditSettings',
+            'updatecreditsettings' => 'updateCreditSettings',
+            'getcredit' => 'getCredit',
+        ];
+        $action = ArrayHelper::getValue($this->get, 'action');
+
+        if (isset($actionList[$action])) {
+            return $actionList[$action];
+        }
+        return null;
     }
 }
