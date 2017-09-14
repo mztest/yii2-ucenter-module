@@ -7,6 +7,8 @@
  */
 namespace mztest\ucenter;
 
+use mztest\ucenter\models\UCenterClient;
+
 class Module extends \yii\base\Module
 {
     /**
@@ -33,6 +35,10 @@ class Module extends \yii\base\Module
 
     public $configFile = '@common/config/ucenter.php';
     /**
+     * @var UCenterClient
+     */
+    protected $uCenterClient;
+    /**
      * @inheritdoc
      */
     public function init()
@@ -43,5 +49,11 @@ class Module extends \yii\base\Module
         $this->configFile = \Yii::getAlias($this->configFile);
         require_once($this->configFile);
 
+        $this->uCenterClient = new UCenterClient();
+    }
+
+    public function getUCenterClient()
+    {
+        return $this->uCenterClient;
     }
 }
