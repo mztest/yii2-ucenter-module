@@ -24,10 +24,9 @@ Usage
 -----
 Step 1:
 
-Goto UCenter admin system, create a new application.
+Login UCenter admin system, create a new application.
 ```
 应用的主 URL: <code>http://your site doamin/ucenter</code>
-应用接口文件名称: <code>index</code>
 ```
  
 Step 2: 
@@ -66,6 +65,16 @@ return [
             'configFile' => '@app/config/ucenter.php' // default '@app/config/ucenter.php',
             'userModel' => '\app\models\User',
             'emailAttribute' => 'email',
+        ],
+    ],
+    'components' => [
+        '...',
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+                ['pattern' => 'ucenter/api/uc.php', 'route' => 'ucenter/api/index'],
+            ],
         ],
     ],
     '...'
