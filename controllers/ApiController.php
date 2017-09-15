@@ -31,7 +31,16 @@ class ApiController extends Controller
 
     public function actionIndex()
     {
-        return $this->uCenter->run();
+        $action = $this->uCenter->getAction();
+
+        // Load special params.
+        if (in_array($action, ['snycLogin'])) {
+            $model = $this->module->userModel;
+            $attribute = $this->module->emailAttribute;
+
+            return $this->uCenter->{$action}($model, $attribute);
+        }
+        return $this->uCenter->{$action}();
     }
 
 }

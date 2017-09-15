@@ -34,6 +34,9 @@ class Module extends \yii\base\Module
     public $defaultRoute = 'api';
 
     public $configFile = '@app/config/ucenter.php';
+
+    public $userModel = '\common\models\User';
+    public $emailAttribute = 'email';
     /**
      * @var UCenterClient
      */

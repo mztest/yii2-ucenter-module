@@ -8,6 +8,7 @@
 
 namespace mztest\ucenter\models;
 
+use Yii;
 use yii\base\InvalidConfigException;
 use yii\base\Object;
 use yii\helpers\ArrayHelper;
@@ -50,13 +51,6 @@ class UCenter extends Object
         }
     }
 
-    public function run()
-    {
-        $action = $this->getAction();
-
-        return $this->{$action}();
-    }
-
     public function test()
     {
         return self::API_RETURN_SUCCEED;
@@ -71,6 +65,27 @@ class UCenter extends Object
         fwrite($fp, $s);
         fclose($fp);
 
+        return self::API_RETURN_SUCCEED;
+    }
+
+    public function synLogin($model, $attribute)
+    {
+        if ($ucUser = uc_get_user($this->get['uid'], 1)) {
+            list($uid, , $email) = $ucUser;
+            $user = $model::findOne([$attribute => $email]);
+            if ($user) {
+                header('P3P: CP="CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR"');
+                Yii::$app->user->login($user, 3600 * 24 * 30);
+                return self::API_RETURN_SUCCEED;
+            }
+        }
+        return false;
+    }
+
+    public function synLogout()
+    {
+        header('P3P: CP="CURa ADMa DEVa PSAo PSDo OUR BUS UNI PUR INT DEM STA PRE COM NAV OTC NOI DSP COR"');
+        Yii::$app->user->logout();
         return self::API_RETURN_SUCCEED;
     }
 
