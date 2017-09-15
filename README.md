@@ -32,7 +32,7 @@ Goto UCenter admin system, create a new application.
  
 Step 2: 
 
-Save the config into <code>@app/config/ucenter.php</code>
+Save the config into `@app/config/ucenter.php`
 ```php
 define('UC_CONNECT', 'mysql');
 define('UC_DBHOST', 'localhost');
@@ -54,9 +54,9 @@ define('UC_DISCUZ_MEMBER', true);
 define('UC_DISCUZTABLEPRE', '`ultrax`.pre_');
 ```
 
-Step 2:
+Step 3:
 
-Config @app/config/main.php
+Config `@app/config/main.php`
 ```php
 return [
     '...',
@@ -69,7 +69,8 @@ return [
     '...'
 ];
 ```
-Step 3:
+
+Step 4:
 
 About method, using <code>camelCase()</code>. Please see [PSR-1#methods](http://www.php-fig.org/psr/psr-1/#43-methods).
 ```php
