@@ -35,7 +35,7 @@ class Module extends \yii\base\Module
 
     public $configFile = '@app/config/ucenter.php';
 
-    public $userModel = '\common\models\User';
+    public $userModel = '\app\models\User';
     public $emailAttribute = 'email';
     /**
      * @var UCenterClient
