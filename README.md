@@ -63,7 +63,9 @@ return [
     'modules' => [
         'ucenter' => [
             'class' => 'mztest\ucenter\Module',
-            'configFile' => '@app/config/ucenter.php' // default '@app/config/ucenter.php'
+            'configFile' => '@app/config/ucenter.php' // default '@app/config/ucenter.php',
+            'userModel' => '\app\models\User',
+            'emailAttribute' => 'email',
         ],
     ],
     '...'
