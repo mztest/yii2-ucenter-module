@@ -25,15 +25,14 @@ Usage
 Step 1:
 
 Goto UCenter admin system, create a new application.
-
-应用的主 URL: http://your site doamin/ucenter
-应用接口文件名称: index
- 
+```
+应用的主 URL: <code>http://your site doamin/ucenter</code>
+应用接口文件名称: <code>index</code>
+```
  
 Step 2: 
 
-Save the config into your yii2 application. Example: @app/config/ucenter.php 
-Here is the example.
+Save the config into <code>@app/config/ucenter.php</code>
 ```php
 define('UC_CONNECT', 'mysql');
 define('UC_DBHOST', 'localhost');
@@ -72,13 +71,11 @@ return [
 ```
 Step 3:
 
-About method, [PSR-1](http://www.php-fig.org/psr/psr-1/#43-methods) Use <code>camelCase()</code>
-
-Example:
-
-uc_user_register to ucUserRegister
-uc_get_user to ucGetUser
-
+About method, using <code>camelCase()</code>. Please see [PSR-1#methods](http://www.php-fig.org/psr/psr-1/#43-methods).
+```php
+uc_user_register() to ucUserRegister()
+uc_get_user() to ucGetUser()
+```
 Enjoy it.
 
 Example
@@ -86,7 +83,7 @@ Example
 
 Synlogin after user login.
 
-Sometimes we build main site first, then merge the ucenter later, so a little check was added here.
+Sometimes we build main site first, then merge it into ucenter later, so a little check was added here.
 ```php
 // synchronize register and login
 try {
