@@ -34,7 +34,7 @@ class ApiController extends Controller
         $action = $this->uCenter->getAction();
 
         // Load special params.
-        if (in_array($action, ['snyLogin'])) {
+        if (in_array($action, ['synLogin'])) {
             $model = $this->module->userModel;
             $attribute = $this->module->emailAttribute;
 
