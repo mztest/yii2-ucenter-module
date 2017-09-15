@@ -33,7 +33,7 @@ class Module extends \yii\base\Module
      */
     public $defaultRoute = 'api';
 
-    public $configFile = '@common/config/ucenter.php';
+    public $configFile = '@app/config/ucenter.php';
     /**
      * @var UCenterClient
      */
