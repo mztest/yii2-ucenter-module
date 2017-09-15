@@ -135,6 +135,17 @@ class usermodel {
 		$this->db->query("INSERT INTO ".UC_DBTABLEPRE."members SET $sqladd username='$username', password='$password', email='$email', regip='$regip', regdate='".$this->base->time."', salt='$salt'");
 		$uid = $this->db->insert_id();
 		$this->db->query("INSERT INTO ".UC_DBTABLEPRE."memberfields SET uid='$uid'");
+
+		if (defined('UC_DISCUZ_MEMBER') && UC_DISCUZ_MEMBER && defined('UC_DISCUZTABLEPRE')) {
+            // Insert user record into discuz tables.
+            $this->db->query("INSERT INTO ".UC_DISCUZTABLEPRE."common_member SET uid='$uid', username='$username', password='$password', email='$email', adminid='0', groupid='10', regdate='".$this->base->time."', credits='0', timeoffset='9999'");
+            $this->db->query("INSERT INTO ".UC_DISCUZTABLEPRE."common_member_status SET uid='$uid', regip='$regip', lastip='$regip', lastvisit='".$this->base->time."', lastactivity='".$this->base->time."', lastpost='0', lastsendmail='0'");
+            $this->db->query("INSERT INTO ".UC_DISCUZTABLEPRE."common_member_profile SET uid='$uid'");
+            $this->db->query("INSERT INTO ".UC_DISCUZTABLEPRE."common_member_field_forum SET uid='$uid'");
+            $this->db->query("INSERT INTO ".UC_DISCUZTABLEPRE."common_member_field_home SET uid='$uid'");
+            $this->db->query("INSERT INTO ".UC_DISCUZTABLEPRE."common_member_count SET uid='$uid', extcredits1='0', extcredits2='0', extcredits3='0', extcredits4='0', extcredits5='0', extcredits6='0', extcredits7='0', extcredits8='0'");
+            // END
+        }
 		return $uid;
 	}
 
